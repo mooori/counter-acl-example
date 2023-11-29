@@ -1,0 +1,23 @@
+[package]
+name = "counter-acl-example"
+version = "0.1.0"
+edition = "2021"
+# Choose a MSRV which avoids this issue:
+# https://github.com/near/near-workspaces-rs/issues/336
+rust-version = "1.70"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# While `near-plugins` is not yet published on crates.io, we need to specify a git dependency.
+near-plugins = { git = "https://github.com/aurora-is-near/near-plugins.git", rev = "102d95b" }
+near-sdk = "4.1.1"
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
+overflow-checks = true
