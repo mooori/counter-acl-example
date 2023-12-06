@@ -38,7 +38,7 @@ impl Counter {
 }
 ```
 
-*The final version of the code is available [in this repository on github](https://github.com/mooori/counter-acl-example). The `Counter` example is inspired by [near-examples/counter-rust](https://github.com/near-examples/counter-rust).*
+*The final version of the code is available [on Github](./src/lib.rs). The `Counter` example is inspired by [near-examples/counter-rust](https://github.com/near-examples/counter-rust).*
 
 ### Permissions
 
@@ -153,7 +153,7 @@ The `AccessControllable` trait provides many more methods to administer ACL perm
 
 The steps above are sufficient to add complex and configurable ACL permissions to a contract using `near-plugins`. At this point, `alice.near` is the only account which has been granted the `Resetter` role. This means that only `alice.near` may successfully call the contract’s `reset()` method.
 
-The repo contains an [integration test](https://github.com/mooori/counter-acl-example/blob/4a526533c528f09ca436b932e84c37594cbda296/tests/workflow.rs) which verifies that `AccessControllable` was setup up correctly for our `Counter` contract. Take a look at it to learn more about interacting with an `AccessControllable` contract. To run the test on-chain in a local sandbox, it suffices to clone the repo and execute the following command. This is made possible by [near-workspaces-rs](https://github.com/near/near-workspaces-rs).
+The repo contains an [integration test](./tests/workflow.rs) which verifies that `AccessControllable` was setup up correctly for our `Counter` contract. Take a look at it to learn more about interacting with an `AccessControllable` contract. To run the test on-chain in a local sandbox, it suffices to clone the repo and execute the following command. This is made possible by [near-workspaces-rs](https://github.com/near/near-workspaces-rs).
 
 ```
 cargo test
