@@ -14,6 +14,12 @@ crate-type = ["cdylib", "rlib"]
 near-plugins = { git = "https://github.com/aurora-is-near/near-plugins.git", rev = "102d95b" }
 near-sdk = "4.1.1"
 
+[dev-dependencies]
+anyhow = "1.0"
+# Feature `unstable` is required to enable `near_workspaces::compile_project`.
+near-workspaces = {version = "0.9.0", features = ["unstable"]}
+tokio = { version = "1.28.2", features = ["full"] }
+
 [profile.release]
 codegen-units = 1
 opt-level = "z"
