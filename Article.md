@@ -44,7 +44,7 @@ impl Counter {
 
 The contract methods defined above can be called by anyone since they are public and inside an implementation block marked with `#[near_bindgen]`. Using `near-sdk-rs` it is possible to restrict some methods such that they can be called only by the contract itself. Either by using `#[private]` or by not exposing the method publicly, as described in the [documentation](https://docs.near.org/sdk/rust/contract-interface/private-methods).
 
-However, what if some accounts other than the contract should be able to call restricted methods? This is were [`AccessControllable`](https://github.com/aurora-is-near/near-plugins#accesscontrollable) plugin comes in handy.
+However, what if we wanted to implement more flexible permissions (e.g. allowing only some set of accounts to call a given function)? This is where the [`AccessControllable`](https://github.com/aurora-is-near/near-plugins#accesscontrollable) plugin comes in handy.
 
 ### Managing permissions with ACL
 
@@ -59,7 +59,7 @@ pub fn decrement(&mut self) {
  
 Let’s walk through it step by step to see how you can make your NEAR smart contract `AccessControllable`.
 
-### Stop 1: Add `near-plugins` as a dependency
+### Step 1: Add `near-plugins` as a dependency
 
 For now, `near-plugins` has not yet been published on crates.io. Still, the crate is ready for usage and it can be added as git dependency:
 
@@ -164,12 +164,15 @@ cargo test
 Using `AccessControllable` extends the contracts state to store the permissions that have been granted. Moreover, the `AccessControllable` trait is implemented for the contract to enable administering permissions. When `#[access_control_any(roles(...))]` is attached to a method, `near-plugin` injects code which checks if the caller was granted any of the required roles. If not, a panic is generated which aborts the function call.
 
 To learn about all the details, you can dive into the [implementation](https://github.com/aurora-is-near/near-plugins/blob/master/near-plugins-derive/src/access_controllable.rs) of the `AccessControllable` macro.
+
 ## A note on testing
 
 The functionality provided by `near-plugins` is critical for security and we strive to test it exhaustively. In tests we compile demo contracts for all plugins and deploy them on-chain in a local sandbox. Then we verify that using a particular plugin adds exactly the expected functionality to the contract. These tests and demo contracts can be found [here](https://github.com/aurora-is-near/near-plugins/tree/master/near-plugins-derive/tests).
+
 ## Ready for production, though?
 
-As mentioned earlier, `near-plugins` comes with the caveat of not yet being published to crates.io. Nevertheless, we are confident that `near-plugins` can already be used in production. In fact, smart contracts related to the [Rainbow Bridge](https://rainbowbridge.app/transfer) already use `near-plugins`. Moreover, both [Hacken](https://www.datocms-assets.com/50156/1680101850-hacken-near-plugins-final-report-updated-march2023.pdf) and [AuditOne](https://www.datocms-assets.com/50156/1680590522-auditone-near-plugins-final-report-updated-march2023.pdf) audited `near-plugins`, awarding it high scores.
+As mentioned earlier, `near-plugins` comes with the caveat of not yet being published to crates.io. Nevertheless, it is already used in some contracts on mainnet, e.g. contracts related to the [Rainbow Bridge](https://rainbowbridge.app/transfer). Moreover, both [Hacken](https://www.datocms-assets.com/50156/1680101850-hacken-near-plugins-final-report-updated-march2023.pdf) and [AuditOne](https://www.datocms-assets.com/50156/1680590522-auditone-near-plugins-final-report-updated-march2023.pdf) audited `near-plugins`, awarding it high scores.
+
 # Conclusion
 
 Using `near-plugins`, developers can add complex functionality to their smart contracts with just a few lines of code. Developers can focus on creating value for their users by relying on `near-plugins` for some cumbersome administrative tasks that are nevertheless critical for security. We are testing all plugins extensively and the `near-plugins` crate has been audited twice. We hope to contribute to the NEAR ecosystem by providing secure smart contract plugins which developers can build upon.
