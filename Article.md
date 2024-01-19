@@ -67,7 +67,7 @@ For now, `near-plugins` has not yet been published on crates.io. Still, the crat
 # Add `near-plugins` under `dependencies` in your Cargo.toml.
 
 [dependencies]
-near-plugins = { git = "https://github.com/aurora-is-near/near-plugins.git", rev = "102d95b" }
+near-plugins = { git = "https://github.com/aurora-is-near/near-plugins.git", tag = "v0.2.0" }
 ```
 
 ### Step 2: Define roles
