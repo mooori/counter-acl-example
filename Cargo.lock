@@ -2127,8 +2127,8 @@ dependencies = [
 
 [[package]]
 name = "near-plugins"
-version = "0.1.0"
-source = "git+https://github.com/aurora-is-near/near-plugins.git?rev=102d95b#102d95b420ce63ea165def51fca5b37d0786bb89"
+version = "0.2.0"
+source = "git+https://github.com/aurora-is-near/near-plugins.git?tag=v0.2.0#542601c3dae8229e2caf5d723cc10b6d83a01f42"
 dependencies = [
  "bitflags 1.3.2",
  "near-plugins-derive",
@@ -2138,8 +2138,8 @@ dependencies = [
 
 [[package]]
 name = "near-plugins-derive"
-version = "0.1.0"
-source = "git+https://github.com/aurora-is-near/near-plugins.git?rev=102d95b#102d95b420ce63ea165def51fca5b37d0786bb89"
+version = "0.2.0"
+source = "git+https://github.com/aurora-is-near/near-plugins.git?tag=v0.2.0#542601c3dae8229e2caf5d723cc10b6d83a01f42"
 dependencies = [
  "darling 0.13.4",
  "proc-macro-crate 0.1.5",
