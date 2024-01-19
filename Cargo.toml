@@ -11,7 +11,7 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 # While `near-plugins` is not yet published on crates.io, we need to specify a git dependency.
-near-plugins = { git = "https://github.com/aurora-is-near/near-plugins.git", rev = "102d95b" }
+near-plugins = { git = "https://github.com/aurora-is-near/near-plugins.git", tag = "v0.2.0" }
 near-sdk = "4.1.1"
 
 [dev-dependencies]
